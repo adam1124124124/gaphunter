@@ -230,45 +230,6 @@ function App() {
     <h2 className="results-title">✅ Gap Found!</h2>
     <p className="results-subtitle">Bybit ↔ KvamDex</p>
 
-    <div className="instructions-card">
-      <h3 className="instructions-title">💰 Profit Calculation</h3>
-      
-      <div className="calculation-table">
-        <div className="calc-row">
-          <span>Starting Balance:</span>
-          <span className="calc-value">1000 USDT</span>
-        </div>
-        <div className="calc-row">
-          <span>Buy TRX on Bybit @ ${bybitPrice.toFixed(4)}:</span>
-          <span className="calc-value">{(INITIAL_AMOUNT / bybitPrice).toFixed(0)} TRX</span>
-        </div>
-        <div className="calc-row highlight-calc">
-          <span>Transfer TRX → KvamDex:</span>
-          <span className="calc-value">{(INITIAL_AMOUNT / bybitPrice).toFixed(0)} TRX</span>
-        </div>
-        <div className="calc-row">
-          <span>Sell TRX on KvamDex @ ${kvamDexPrice.toFixed(4)}:</span>
-          <span className="calc-value">{finalUSDT.toFixed(2)} USDT</span>
-        </div>
-        <div className="calc-row profit-row">
-          <span><strong>NET PROFIT:</strong></span>
-          <span className="calc-profit">+${extraUSDT.toFixed(2)} ({gapPct.toFixed(2)}%)</span>
-        </div>
-      </div>
-
-<div className="action-steps">
-  <p><strong>🎯 How to easy:</strong></p>
-  <ol>
-    <li>Register on Bybit and KvamDex</li>
-    <li>Buy TRX on Bybit with USDT</li>
-    <li>Transfer TRX to KvamDex (TRC-20 network)</li>
-    <li>Sell TRX for USDT on KvamDex</li>
-    <li>Withdraw profit back</li>
-  </ol>
-</div>
-
-    </div>
-
     <div className="results-grid">
       <div className="result-item">
         <span className="result-label">
@@ -312,6 +273,44 @@ function App() {
       </div>
     </div>
 
+    <div className="instructions-card">
+      <h3 className="instructions-title">💰 Profit Calculation</h3>
+      
+      <div className="calculation-table">
+        <div className="calc-row">
+          <span>Starting Balance:</span>
+          <span className="calc-value">1000 USDT</span>
+        </div>
+        <div className="calc-row">
+          <span>Buy TRX on Bybit @ ${bybitPrice.toFixed(4)}:</span>
+          <span className="calc-value">{(INITIAL_AMOUNT / bybitPrice).toFixed(0)} TRX</span>
+        </div>
+        <div className="calc-row highlight-calc">
+          <span>Transfer TRX → KvamDex:</span>
+          <span className="calc-value">{(INITIAL_AMOUNT / bybitPrice).toFixed(0)} TRX</span>
+        </div>
+        <div className="calc-row">
+          <span>Sell TRX on KvamDex @ ${kvamDexPrice.toFixed(4)}:</span>
+          <span className="calc-value">{finalUSDT.toFixed(2)} USDT</span>
+        </div>
+        <div className="calc-row profit-row">
+          <span><strong>NET PROFIT:</strong></span>
+          <span className="calc-profit">+${extraUSDT.toFixed(2)} ({gapPct.toFixed(2)}%)</span>
+        </div>
+      </div>
+
+      <div className="action-steps">
+        <p><strong>🎯 How to easy:</strong></p>
+        <ol>
+          <li>Register on Bybit and KvamDex</li>
+          <li>Buy TRX on Bybit with USDT</li>
+          <li>Transfer TRX to KvamDex (TRC-20 network)</li>
+          <li>Sell TRX for USDT on KvamDex</li>
+          <li>Withdraw profit back</li>
+        </ol>
+      </div>
+    </div>
+
     <div className="limit-notice">
       <p className="limit-text">🎯 Daily Free Search Used</p>
       <p className="limit-subtext">Next search available tomorrow</p>
@@ -339,6 +338,7 @@ function App() {
     </p>
   </div>
 )}
+
 
       </div>
     </div>
