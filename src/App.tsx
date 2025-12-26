@@ -8,6 +8,7 @@ const BYBIT_URL = "https://www.bybit.com";
 const KVAMDEX_URL = "https://kvamdex.com";
 const TELEGRAM_CONTACT = "https://t.me/pisapopakaka";
 
+
 const EXCHANGES = [
   "BYBIT", "KvamDex", "MEXC", "OKX", "Gate.io", "Bitget", 
   "Binance", "Kraken", "Coinbase", "Huobi", "KuCoin", "Gemini",
@@ -49,6 +50,8 @@ function App() {
   const [showData, setShowData] = useState(false);
   const [currentExchange, setCurrentExchange] = useState(0);
   const [currentCoin, setCurrentCoin] = useState(0);
+  const [timeRemaining, setTimeRemaining] = useState<string>("");
+
 
   const scanIntervalRef = useRef<number | null>(null);
   const cycleIntervalRef = useRef<number | null>(null);
@@ -119,6 +122,44 @@ function App() {
       }
     }, 50);
   };
+
+  
+useEffect(() => {
+  if (!showResults) return;
+
+  const firstSearchTime = localStorage.getItem('firstSearchTime');
+  const now = Date.now();
+  
+  if (!firstSearchTime) {
+    localStorage.setItem('firstSearchTime', now.toString());
+  }
+
+  const searchTime = parseInt(firstSearchTime || now.toString());
+  const resetTime = searchTime + (24 * 60 * 60 * 1000);
+
+  const updateTimer = () => {
+    const remaining = resetTime - Date.now();
+    
+    if (remaining <= 0) {
+      localStorage.removeItem('firstSearchTime');
+      setTimeRemaining("00:00:00");
+      return;
+    }
+
+    const hours = Math.floor(remaining / (1000 * 60 * 60));
+    const minutes = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((remaining % (1000 * 60)) / 1000);
+
+    setTimeRemaining(
+      `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`
+    );
+  };
+
+  updateTimer();
+  const timerInterval = setInterval(updateTimer, 1000);
+
+  return () => clearInterval(timerInterval);
+}, [showResults]);
 
 
   const gapPct =
@@ -321,10 +362,12 @@ function App() {
       </div>
     </div>
 
-    <div className="limit-notice">
-      <p className="limit-text">🎯 Daily Free Search Used</p>
-      <p className="limit-subtext">Next search available tomorrow</p>
-    </div>
+<div className="limit-notice">
+  <p className="limit-text">🎯 Daily Free Search Used</p>
+  <p className="limit-subtext">Next search available in:</p>
+  <p className="countdown-timer">{timeRemaining}</p>
+</div>
+
 
     <a 
       href={TELEGRAM_CONTACT}
