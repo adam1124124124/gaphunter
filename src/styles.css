@@ -554,3 +554,18 @@ body {
   margin-bottom: 0;
 }
 
+.action-warning {
+  margin-top: 12px;
+  font-size: 12px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  padding: 10px;
+  background: rgba(239, 68, 68, 0.1);
+  border-left: 3px solid var(--error-red);
+  border-radius: 4px;
+}
+
+.action-warning strong {
+  color: var(--error-red);
+}
+
