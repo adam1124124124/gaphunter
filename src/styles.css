@@ -369,3 +369,104 @@ body {
   justify-content: center;
   margin-top: 16px;
 }
+
+/* Замороженные биржи */
+.cycling-area-frozen {
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.exchange-link {
+  text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.exchange-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 212, 255, 0.4);
+}
+
+.arrow-static {
+  font-size: 1.8rem;
+  color: #00d4ff;
+  margin: 0 0.8rem;
+}
+
+.pair-separator {
+  margin: 0 8px;
+  color: var(--text-secondary);
+  font-weight: 700;
+}
+
+/* Внешние ссылки в результатах */
+.external-link {
+  margin-left: 8px;
+  font-size: 14px;
+  text-decoration: none;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.external-link:hover {
+  opacity: 1;
+}
+
+/* Лимит */
+.limit-notice {
+  background: rgba(168, 85, 247, 0.1);
+  border: 1px solid var(--neon-purple);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.limit-text {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--neon-purple);
+  margin-bottom: 4px;
+}
+
+.limit-subtext {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+/* Кнопка контакта */
+.btn-contact {
+  display: inline-block;
+  background: linear-gradient(135deg, #0088cc, #00d4ff);
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 14px 32px;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: transform 0.2s;
+  margin-bottom: 20px;
+}
+
+.btn-contact:hover {
+  transform: translateY(-2px);
+}
+
+/* Footer контакт */
+.contact-footer {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.telegram-link {
+  color: var(--neon-blue);
+  text-decoration: none;
+  font-weight: 600;
+  margin-left: 4px;
+}
+
+.telegram-link:hover {
+  text-decoration: underline;
+}
+
