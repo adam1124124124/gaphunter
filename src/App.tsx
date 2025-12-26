@@ -5,9 +5,20 @@ const KVAMDEX_PREMIUM_PCT = 7.16;
 const INITIAL_AMOUNT = 1000;
 const SCAN_DURATION_MS = 5000;
 
-const EXCHANGES = ["BYBIT", "KvamDex", "MEXC", "OKX", "Gate.io", "Bitget", "Binance", "Kraken", "Coinbase", "Huobi", "KuCoin", "Gemini"];
+const EXCHANGES = [
+  "BYBIT", "KvamDex", "MEXC", "OKX", "Gate.io", "Bitget", 
+  "Binance", "Kraken", "Coinbase", "Huobi", "KuCoin", "Gemini",
+  "Crypto.com", "Bitfinex", "Bitstamp", "Poloniex", "Bittrex",
+  "HTX", "Upbit", "Bithumb", "Phemex", "BingX"
+];
 
-const COINS = ["🪙 BTC", "💎 ETH", "☀️ SOL", "🐕 DOGE", "🐸 PEPE", "🐕 SHIB", "🔺 TRX", "⚡ MATIC", "🔵 DOT", "🟢 AVAX", "🔴 ADA", "🟡 BNB"];
+const COINS = [
+  "🪙 BTC", "💎 ETH", "☀️ SOL", "🐕 DOGE", "🐸 PEPE", "🐕 SHIB",
+  "🔺 TRX", "⚡ MATIC", "🔵 DOT", "🟢 AVAX", "🔴 ADA", "🟡 BNB",
+  "🔗 LINK", "🔶 LTC", "🟠 XRP", "💜 UNI", "💚 ALGO", "💙 ATOM",
+  "🧡 FTM", "🌙 NEAR", "⭐ XLM", "🎯 SAND", "🎮 AXS", "🏦 USDT",
+  "💵 USDC", "🔥 FLOKI", "🐱 KITTY", "🌊 WAVES", "🎨 APE", "🦄 CAKE"
+];
 
 // Скорости анимации
 const IDLE_SPEED = 800;  // Медленная скорость на главном экране
@@ -119,17 +130,26 @@ function App() {
   return (
     <div className="app">
       <div className="hero">
-        <div className="cycling-area">
-          <div className="cycle-row">
-            <span className="pill exchange-pill">
-              {EXCHANGES[currentExchange]}
-            </span>
-            <span className="pill coin-pill">{COINS[currentCoin]}</span>
-          </div>
-        </div>
+<div className="cycling-area">
+  <div className="cycle-row">
+    <span className="pill exchange-pill">
+      {EXCHANGES[currentExchange]}
+    </span>
+    <span className="arrow">⇄</span>
+    <span className="pill exchange-pill">
+      {EXCHANGES[(currentExchange + 1) % EXCHANGES.length]}
+    </span>
+  </div>
+  <div className="gap-preview">
+    <span className="gap-label">Gap:</span>
+    <span className="gap-value">+{KVAMDEX_PREMIUM_PCT}%</span>
+  </div>
+  <span className="pill coin-pill">{COINS[currentCoin]}</span>
+</div>
+
 
         <h1 className="title">GapFinder</h1>
-        <p className="subtitle">Scan platforms for rate gaps.</p>
+        <p className="subtitle">🔍 Find profitable arbitrage opportunities</p>
 
         {error && (
           <div className="error-state">
