@@ -265,10 +265,6 @@ function App() {
     <li>Sell TRX for USDT on KvamDex at higher rate</li>
     <li>Withdraw profit back to Bybit</li>
   </ol>
-  <p className="action-warning">
-    ⚠️ <strong>Note:</strong> Real gaps appear randomly and close in 2-5 minutes. 
-    Contact us for live opportunities.
-  </p>
 </div>
 
     </div>
