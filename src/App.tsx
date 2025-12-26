@@ -36,6 +36,7 @@ function App() {
   const [isScanning, setIsScanning] = useState(false);
   const [scanProgress, setScanProgress] = useState(0);
   const [showResults, setShowResults] = useState(false);
+  const [showData, setShowData] = useState(false); // ✅ ДОБАВЛЕНО
   const [currentExchange, setCurrentExchange] = useState(0);
   const [currentCoin, setCurrentCoin] = useState(0);
 
@@ -68,17 +69,7 @@ function App() {
     }
   };
 
-  useEffect(() => {
-    fetchBybitPrice();
-    intervalRef.current = window.setInterval(
-      fetchBybitPrice,
-      PRICE_FETCH_INTERVAL_MS
-    );
-
-    return () => {
-      if (intervalRef.current) clearInterval(intervalRef.current);
-    };
-  }, []);
+  // ✅ УДАЛЁН useEffect с автозагрузкой
 
   useEffect(() => {
     if (isScanning || showResults) {
@@ -97,6 +88,7 @@ function App() {
 
   const startScan = async () => {
     await fetchBybitPrice();
+    setShowData(true); // ✅ ДОБАВЛЕНО
 
     setIsScanning(true);
     setShowResults(false);
@@ -152,7 +144,7 @@ function App() {
           </div>
         )}
 
-        {!error &&
+        {showData && !error &&  {/* ✅ ДОБАВЛЕНО showData && */}
           bybitPrice &&
           kvamDexPrice &&
           !isScanning &&
@@ -177,7 +169,6 @@ function App() {
           <button
             className="btn-hunt"
             onClick={startScan}
-            disabled={!bybitPrice || !!error}
           >
             Hunt Profit
           </button>
