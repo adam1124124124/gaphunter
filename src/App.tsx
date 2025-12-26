@@ -217,12 +217,14 @@ useEffect(() => {
         )}
 
         <h1 className="title">GapFinder</h1>
+        <h1 className="title">GapFinder</h1>
         {!showResults && (
-       </>
-          <p className="subtitle">🔍 Find profitable arbitrage opportunities</p>
-          <p className="scan-counter">🔍 2,847 scans completed today</p>
-  </>
+          <>
+            <p className="subtitle">🔍 Find profitable arbitrage opportunities</p>
+            <p className="scan-counter">🔍 2,847 scans completed today</p>
+          </>
         )}
+
 
         {error && (
           <div className="error-state">
