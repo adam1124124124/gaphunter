@@ -144,11 +144,7 @@ function App() {
           </div>
         )}
 
-        {showData && !error &&  {/* ✅ ДОБАВЛЕНО showData && */}
-          bybitPrice &&
-          kvamDexPrice &&
-          !isScanning &&
-          !showResults && (
+        {showData && !error && bybitPrice && kvamDexPrice && !isScanning && !showResults && (
             <div className="live-info">
               <div className="info-row">
                 <span>Bybit TRX/USDT:</span>
@@ -164,6 +160,7 @@ function App() {
               </div>
             </div>
           )}
+
 
         {!isScanning && !showResults && (
           <button
