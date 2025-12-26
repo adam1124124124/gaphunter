@@ -225,81 +225,118 @@ function App() {
           </div>
         )}
 
-        {showResults && bybitPrice && kvamDexPrice && (
-          <div className="results-card">
-            <h2 className="results-title">✅ Gap Found!</h2>
-            <p className="results-subtitle">Bybit ↔ KvamDex</p>
+{showResults && bybitPrice && kvamDexPrice && (
+  <div className="results-card">
+    <h2 className="results-title">✅ Gap Found!</h2>
+    <p className="results-subtitle">Bybit ↔ KvamDex</p>
 
-            <div className="results-grid">
-              <div className="result-item">
-                <span className="result-label">
-                  Bybit Rate
-                  <a 
-                    href={BYBIT_URL} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="external-link"
-                  >
-                    🔗
-                  </a>
-                </span>
-                <span className="result-value">${bybitPrice.toFixed(6)}</span>
-              </div>
-              <div className="result-item">
-                <span className="result-label">
-                  KvamDex Rate
-                  <a 
-                    href={KVAMDEX_URL} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="external-link"
-                  >
-                    🔗
-                  </a>
-                </span>
-                <span className="result-value">${kvamDexPrice.toFixed(6)}</span>
-              </div>
-              <div className="result-item highlight-item">
-                <span className="result-label">Gap</span>
-                <span className="result-value gap">+{gapPct.toFixed(2)}%</span>
-              </div>
-              <div className="result-item highlight-item">
-                <span className="result-label">
-                  Extra on {INITIAL_AMOUNT} USDT
-                </span>
-                <span className="result-value profit">
-                  +${extraUSDT.toFixed(2)} ({finalUSDT.toFixed(2)} USDT)
-                </span>
-              </div>
-            </div>
+    <div className="instructions-card">
+      <h3 className="instructions-title">💰 Profit Calculation Example</h3>
+      
+      <div className="calculation-table">
+        <div className="calc-row">
+          <span>Starting Balance:</span>
+          <span className="calc-value">1000 USDT</span>
+        </div>
+        <div className="calc-row">
+          <span>Buy TRX on Bybit @ ${bybitPrice.toFixed(4)}:</span>
+          <span className="calc-value">{(INITIAL_AMOUNT / bybitPrice).toFixed(0)} TRX</span>
+        </div>
+        <div className="calc-row highlight-calc">
+          <span>Transfer TRX → KvamDex:</span>
+          <span className="calc-value">{(INITIAL_AMOUNT / bybitPrice).toFixed(0)} TRX</span>
+        </div>
+        <div className="calc-row">
+          <span>Sell TRX on KvamDex @ ${kvamDexPrice.toFixed(4)}:</span>
+          <span className="calc-value">{finalUSDT.toFixed(2)} USDT</span>
+        </div>
+        <div className="calc-row profit-row">
+          <span><strong>NET PROFIT:</strong></span>
+          <span className="calc-profit">+${extraUSDT.toFixed(2)} ({gapPct.toFixed(2)}%)</span>
+        </div>
+      </div>
 
-            <div className="limit-notice">
-              <p className="limit-text">🎯 Daily Free Search Used</p>
-              <p className="limit-subtext">Next search available tomorrow</p>
-            </div>
+      <div className="action-steps">
+        <p><strong>🎯 Ready to start?</strong></p>
+        <ol>
+          <li>Open accounts on Bybit + KvamDex</li>
+          <li>Wait for gap notification (Telegram bot)</li>
+          <li>Execute trades within 2-3 minutes</li>
+        </ol>
+      </div>
+    </div>
 
-            <a 
-              href={TELEGRAM_CONTACT}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-contact"
-            >
-              Get Unlimited Access
-            </a>
+    <div className="results-grid">
+      <div className="result-item">
+        <span className="result-label">
+          Bybit Rate
+          <a 
+            href={BYBIT_URL} 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="external-link"
+          >
+            🔗
+          </a>
+        </span>
+        <span className="result-value">${bybitPrice.toFixed(6)}</span>
+      </div>
+      <div className="result-item">
+        <span className="result-label">
+          KvamDex Rate
+          <a 
+            href={KVAMDEX_URL} 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="external-link"
+          >
+            🔗
+          </a>
+        </span>
+        <span className="result-value">${kvamDexPrice.toFixed(6)}</span>
+      </div>
+      <div className="result-item highlight-item">
+        <span className="result-label">Gap</span>
+        <span className="result-value gap">+{gapPct.toFixed(2)}%</span>
+      </div>
+      <div className="result-item highlight-item">
+        <span className="result-label">
+          Extra on {INITIAL_AMOUNT} USDT
+        </span>
+        <span className="result-value profit">
+          +${extraUSDT.toFixed(2)} ({finalUSDT.toFixed(2)} USDT)
+        </span>
+      </div>
+    </div>
 
-            <p className="contact-footer">
-              For full access to real-time scanning, contact us on Telegram:{" "}
-              <a 
-                href={TELEGRAM_CONTACT}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="telegram-link"
-              >
-                @pisapopakaka
-              </a>
-            </p>
-          </div>
-        )}
+    <div className="limit-notice">
+      <p className="limit-text">🎯 Daily Free Search Used</p>
+      <p className="limit-subtext">Next search available tomorrow</p>
+    </div>
+
+    <a 
+      href={TELEGRAM_CONTACT}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="btn-contact"
+    >
+      Get Unlimited Access
+    </a>
+
+    <p className="contact-footer">
+      For full access to real-time scanning, contact us on Telegram:{" "}
+      <a 
+        href={TELEGRAM_CONTACT}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="telegram-link"
+      >
+        @pisapopakaka
+      </a>
+    </p>
+  </div>
+)}
+
       </div>
     </div>
   );
