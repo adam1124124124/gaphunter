@@ -218,7 +218,10 @@ useEffect(() => {
 
         <h1 className="title">GapFinder</h1>
         {!showResults && (
+       </>
           <p className="subtitle">🔍 Find profitable arbitrage opportunities</p>
+          <p className="scan-counter">🔍 2,847 scans completed today</p>
+  </>
         )}
 
         {error && (
@@ -269,6 +272,10 @@ useEffect(() => {
 {showResults && bybitPrice && kvamDexPrice && (
   <div className="results-card">
     <h2 className="results-title">✅ Gap Found!</h2>
+    <div className="live-indicator">
+  <span className="pulse-dot"></span>
+  Updated 3 seconds ago
+</div>
     <p className="results-subtitle">Bybit ↔ KvamDex</p>
 
     <div className="results-grid">
