@@ -56,6 +56,9 @@ function App() {
   const scanIntervalRef = useRef<number | null>(null);
   const cycleIntervalRef = useRef<number | null>(null);
 
+  const [investAmount, setInvestAmount] = useState(1000);
+
+
   const fetchBybitPrice = async () => {
     try {
       const response = await fetch(
@@ -166,8 +169,9 @@ useEffect(() => {
     bybitPrice && kvamDexPrice
       ? ((kvamDexPrice - bybitPrice) / bybitPrice) * 100
       : 0;
-  const finalUSDT = INITIAL_AMOUNT * (1 + gapPct / 100);
-  const extraUSDT = finalUSDT - INITIAL_AMOUNT;
+const finalUSDT = investAmount * (1 + gapPct / 100);
+const extraUSDT = finalUSDT - investAmount;
+
 
   return (
     <div className="app">
@@ -220,7 +224,7 @@ useEffect(() => {
         {!showResults && (
           <>
             <p className="subtitle">Find profitable arbitrage opportunities</p>
-            <p className="scan-counter">🔍 302 scans completed today</p>
+            <p className="scan-counter">🔍 Highest gap found this week: +12.4%</p>
           </>
         )}
 
@@ -314,7 +318,7 @@ useEffect(() => {
       </div>
       <div className="result-item highlight-item">
         <span className="result-label">
-          Your profit per {INITIAL_AMOUNT} USDT
+Your profit per {investAmount} USDT
         </span>
         <span className="result-value profit">
           +${extraUSDT.toFixed(2)} ({finalUSDT.toFixed(2)} USDT)
@@ -325,28 +329,45 @@ useEffect(() => {
     <div className="instructions-card">
       <h3 className="instructions-title">💰 Profit Calculation</h3>
       
-      <div className="calculation-table">
-        <div className="calc-row">
-          <span>1️⃣Starting Balance:</span>
-          <span className="calc-value">1000 USDT</span>
-        </div>
-        <div className="calc-row">
-          <span>2️⃣Buy TRX on Bybit for ${bybitPrice.toFixed(4)}:</span>
-          <span className="calc-value">{(INITIAL_AMOUNT / bybitPrice).toFixed(0)} TRX</span>
-        </div>
-        <div className="calc-row highlight-calc">
-          <span>3️⃣Transfer TRX → KvamDex:</span>
-          <span className="calc-value">{(INITIAL_AMOUNT / bybitPrice).toFixed(0)} TRX</span>
-        </div>
-        <div className="calc-row">
-          <span>4️⃣Sell TRX on KvamDex for ${kvamDexPrice.toFixed(4)}:</span>
-          <span className="calc-value">{finalUSDT.toFixed(2)} USDT</span>
-        </div>
-        <div className="calc-row profit-row">
-          <span><strong>✅NET PROFIT:</strong></span>
-          <span className="calc-profit">+${extraUSDT.toFixed(2)} ({gapPct.toFixed(2)}%)</span>
-        </div>
-      </div>
+<div className="calculation-table">
+  <div className="amount-selector">
+    <label className="amount-label">Starting Balance:</label>
+    <div className="amount-display">{investAmount.toLocaleString()} USDT</div>
+    <input 
+      type="range" 
+      min="100" 
+      max="10000" 
+      step="100"
+      value={investAmount}
+      onChange={(e) => setInvestAmount(parseInt(e.target.value))}
+      className="amount-slider"
+    />
+    <div className="amount-range">
+      <span>$100</span>
+      <span>$10,000</span>
+    </div>
+  </div>
+
+  <div className="calc-row">
+    <span>1️⃣ Buy TRX on Bybit @ ${bybitPrice.toFixed(4)}:</span>
+    <span className="calc-value">{(investAmount / bybitPrice).toFixed(0)} TRX</span>
+  </div>
+  <div className="calc-row highlight-calc">
+    <span>2️⃣ Transfer TRX → KvamDex:</span>
+    <span className="calc-value">{(investAmount / bybitPrice).toFixed(0)} TRX</span>
+  </div>
+  <div className="calc-row">
+    <span>3️⃣ Sell TRX on KvamDex @ ${kvamDexPrice.toFixed(4)}:</span>
+    <span className="calc-value">{((investAmount / bybitPrice) * kvamDexPrice).toFixed(2)} USDT</span>
+  </div>
+  <div className="calc-row profit-row">
+    <span><strong>✅ NET PROFIT:</strong></span>
+    <span className="calc-profit">
+      +${((investAmount / bybitPrice) * kvamDexPrice - investAmount).toFixed(2)} ({gapPct.toFixed(2)}%)
+    </span>
+  </div>
+</div>
+
 
       <div className="action-steps">
         <p><strong>🎯 How to Execute:</strong></p>
