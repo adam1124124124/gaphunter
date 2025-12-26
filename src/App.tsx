@@ -4,6 +4,9 @@ import { useState, useEffect, useRef } from "react";
 const KVAMDEX_PREMIUM_PCT = 7.16;
 const INITIAL_AMOUNT = 1000;
 const SCAN_DURATION_MS = 5000;
+const BYBIT_URL = "https://www.bybit.com";
+const KVAMDEX_URL = "https://kvamdex.com";
+const TELEGRAM_CONTACT = "https://t.me/pisapopakaka";
 
 const EXCHANGES = [
   "BYBIT", "KvamDex", "MEXC", "OKX", "Gate.io", "Bitget", 
@@ -21,8 +24,8 @@ const COINS = [
 ];
 
 // Скорости анимации
-const IDLE_SPEED = 800;  // Медленная скорость на главном экране
-const SCAN_SPEED = 150;  // Быстрая скорость во время сканирования
+const IDLE_SPEED = 800;
+const SCAN_SPEED = 150;
 
 interface BybitTickerResponse {
   retCode: number;
@@ -76,13 +79,12 @@ function App() {
   };
 
   useEffect(() => {
-    // Определяем скорость в зависимости от статуса сканирования
+    if (showResults) return;
+    
     const speed = isScanning ? SCAN_SPEED : IDLE_SPEED;
 
-    // Очищаем предыдущий интервал
     if (cycleIntervalRef.current) clearInterval(cycleIntervalRef.current);
 
-    // Создаём новый интервал с нужной скоростью
     cycleIntervalRef.current = window.setInterval(() => {
       setCurrentExchange((prev) => (prev + 1) % EXCHANGES.length);
       setCurrentCoin((prev) => (prev + 1) % COINS.length);
@@ -91,7 +93,7 @@ function App() {
     return () => {
       if (cycleIntervalRef.current) clearInterval(cycleIntervalRef.current);
     };
-  }, [isScanning]); // Перезапускаем при изменении isScanning
+  }, [isScanning, showResults]);
 
   const startScan = async () => {
     await fetchBybitPrice();
@@ -109,8 +111,11 @@ function App() {
 
       if (progress >= 100) {
         if (scanIntervalRef.current) clearInterval(scanIntervalRef.current);
-        setIsScanning(false);
-        setShowResults(true);
+        
+        setTimeout(() => {
+          setIsScanning(false);
+          setShowResults(true);
+        }, 1500);
       }
     }, 50);
   };
@@ -130,26 +135,54 @@ function App() {
   return (
     <div className="app">
       <div className="hero">
-<div className="cycling-area">
-  <div className="cycle-row">
-    <span className="pill exchange-pill">
-      {EXCHANGES[currentExchange]}
-    </span>
-    <span className="arrow">⇄</span>
-    <span className="pill exchange-pill">
-      {EXCHANGES[(currentExchange + 1) % EXCHANGES.length]}
-    </span>
-  </div>
-  <div className="coin-row">
-    <span className="pill coin-pill">{COINS[currentCoin]}</span>
-  </div>
-</div>
-
-
-
+        {!showResults ? (
+          <div className="cycling-area">
+            <div className="cycle-row">
+              <span className="pill exchange-pill">
+                {EXCHANGES[currentExchange]}
+              </span>
+              <span className="arrow">⇄</span>
+              <span className="pill exchange-pill">
+                {EXCHANGES[(currentExchange + 1) % EXCHANGES.length]}
+              </span>
+            </div>
+            <div className="coin-row">
+              <span className="pill coin-pill">{COINS[currentCoin]}</span>
+            </div>
+          </div>
+        ) : (
+          <div className="cycling-area-frozen">
+            <div className="cycle-row">
+              <a 
+                href={BYBIT_URL} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="pill exchange-pill exchange-link"
+              >
+                BYBIT
+              </a>
+              <span className="arrow-static">⇄</span>
+              <a 
+                href={KVAMDEX_URL} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="pill exchange-pill exchange-link"
+              >
+                KvamDex
+              </a>
+            </div>
+            <div className="coin-row">
+              <span className="pill coin-pill">🔺 TRX</span>
+              <span className="pair-separator">/</span>
+              <span className="pill coin-pill">💵 USDT</span>
+            </div>
+          </div>
+        )}
 
         <h1 className="title">GapFinder</h1>
-        <p className="subtitle">🔍 Find profitable arbitrage opportunities</p>
+        {!showResults && (
+          <p className="subtitle">🔍 Find profitable arbitrage opportunities</p>
+        )}
 
         {error && (
           <div className="error-state">
@@ -161,27 +194,24 @@ function App() {
         )}
 
         {showData && !error && bybitPrice && kvamDexPrice && !isScanning && !showResults && (
-            <div className="live-info">
-              <div className="info-row">
-                <span>Bybit TRX/USDT:</span>
-                <span className="price">${bybitPrice.toFixed(6)}</span>
-              </div>
-              <div className="info-row">
-                <span>KvamDex Rate:</span>
-                <span className="price">${kvamDexPrice.toFixed(6)}</span>
-              </div>
-              <div className="info-row highlight">
-                <span>Gap:</span>
-                <span className="gap">+{gapPct.toFixed(2)}%</span>
-              </div>
+          <div className="live-info">
+            <div className="info-row">
+              <span>Bybit TRX/USDT:</span>
+              <span className="price">${bybitPrice.toFixed(6)}</span>
             </div>
-          )}
+            <div className="info-row">
+              <span>KvamDex Rate:</span>
+              <span className="price">${kvamDexPrice.toFixed(6)}</span>
+            </div>
+            <div className="info-row highlight">
+              <span>Gap:</span>
+              <span className="gap">+{gapPct.toFixed(2)}%</span>
+            </div>
+          </div>
+        )}
 
         {!isScanning && !showResults && (
-          <button
-            className="btn-hunt"
-            onClick={startScan}
-          >
+          <button className="btn-hunt" onClick={startScan}>
             Hunt Profit
           </button>
         )}
@@ -206,11 +236,31 @@ function App() {
 
             <div className="results-grid">
               <div className="result-item">
-                <span className="result-label">Bybit Rate</span>
+                <span className="result-label">
+                  Bybit Rate
+                  <a 
+                    href={BYBIT_URL} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="external-link"
+                  >
+                    🔗
+                  </a>
+                </span>
                 <span className="result-value">${bybitPrice.toFixed(6)}</span>
               </div>
               <div className="result-item">
-                <span className="result-label">KvamDex Rate</span>
+                <span className="result-label">
+                  KvamDex Rate
+                  <a 
+                    href={KVAMDEX_URL} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="external-link"
+                  >
+                    🔗
+                  </a>
+                </span>
                 <span className="result-value">${kvamDexPrice.toFixed(6)}</span>
               </div>
               <div className="result-item highlight-item">
@@ -227,9 +277,31 @@ function App() {
               </div>
             </div>
 
-            <button className="btn-again" onClick={resetScan}>
-              Run Again
-            </button>
+            <div className="limit-notice">
+              <p className="limit-text">🎯 Daily Free Search Used</p>
+              <p className="limit-subtext">Next search available tomorrow</p>
+            </div>
+
+            <a 
+              href={TELEGRAM_CONTACT}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-contact"
+            >
+              Get Unlimited Access
+            </a>
+
+            <p className="contact-footer">
+              For full access to real-time scanning, contact us on Telegram:{" "}
+              <a 
+                href={TELEGRAM_CONTACT}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="telegram-link"
+              >
+                @pisapopakaka
+              </a>
+            </p>
           </div>
         )}
       </div>
