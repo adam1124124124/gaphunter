@@ -349,7 +349,7 @@ useEffect(() => {
       </div>
 
       <div className="action-steps">
-        <p><strong>🎯 How to easy:</strong></p>
+        <p><strong>🎯 How to Execute:</strong></p>
 <ol>
   <li>
     Register on{" "}
@@ -371,8 +371,8 @@ useEffect(() => {
     </div>
 
 <div className="limit-notice">
-  <p className="limit-text">🎯 Daily Free Search Used</p>
-  <p className="limit-subtext">Next search available in:</p>
+  <p className="limit-text">⏳ Free scan limit reached!</p>
+  <p className="limit-subtext">Next free scan in:</p>
   <p className="countdown-timer">{timeRemaining}</p>
 </div>
 
@@ -383,7 +383,7 @@ useEffect(() => {
       rel="noopener noreferrer"
       className="btn-contact"
     >
-      Get Unlimited Access
+      Unlock Unlimited Access
     </a>
 
     <p className="contact-footer">
