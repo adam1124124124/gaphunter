@@ -60,9 +60,8 @@ function App() {
 
   const fetchBybitPrice = async () => {
     try {
-      const response = await fetch(
-        "https://api.bybit.com/v5/market/tickers?category=spot&symbol=TRXUSDT"
-      );
+const response = await fetch("/api/bybit");
+
       if (!response.ok) {
         throw new Error(`HTTP error ${response.status}`);
       }
