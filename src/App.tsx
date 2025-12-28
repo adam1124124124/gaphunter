@@ -274,7 +274,7 @@ const extraUSDT = finalUSDT - investAmount;
 )}
 
 {!showResults && (
-  <p className="scan-counter">🔍 Highest gap found this week: +12.4%</p>
+  <p className="scan-counter">🔍 Highest gap found this month: +8.4%</p>
 )}
 
 {showData && !error && bybitPrice && kvamDexPrice && !isScanning && !showResults && (
