@@ -168,10 +168,9 @@ border: 2px solid var(--success);
 
 /* Typography */
 .title {
-  font-size: 40px;
+  font-size: 44px;
   font-weight: 700;
 
-  /* было: var(--accent-teal), var(--accent-purple) */
   background: linear-gradient(
     135deg,
     rgba(0, 214, 163, 0.90),
@@ -184,7 +183,11 @@ border: 2px solid var(--success);
   margin-bottom: 12px;
   letter-spacing: -0.02em;
   line-height: 1.2;
+  
+  /* Добавлено свечение */
+  filter: drop-shadow(0 0 28px rgba(0, 214, 163, 0.35));
 }
+
 
 
 .subtitle {
