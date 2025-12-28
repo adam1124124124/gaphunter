@@ -57,7 +57,7 @@ body {
 
 /* Cycling area */
 .cycling-area {
-  margin-bottom: 40px;
+  margin-bottom: 24px;
   min-height: 50px;
   display: flex;
   flex-direction: column;
@@ -285,6 +285,7 @@ border-top: 1px solid var(--border-muted);
 
 /* Hunt button */
 .btn-hunt {
+  margin-top: 32px;
 background: linear-gradient(135deg, rgba(124,92,255,0.95), rgba(0,214,163,0.95));
 color: #071018;
 font-size: 16px;
