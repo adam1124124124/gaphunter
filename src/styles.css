@@ -194,7 +194,7 @@ border: 2px solid var(--success);
   font-size: 18px;
   font-weight: 500;
   color: var(--text-secondary);
-  margin-bottom: 32px;
+  margin-bottom: 24px;
   line-height: 1.6;
 }
 
@@ -240,8 +240,9 @@ border: 2px solid var(--success);
 .scan-counter {
   font-size: 14px;
   color: var(--text-secondary);
-  margin-bottom: 24px;
+  margin-bottom: 16px;  /* уменьши с 24px */
 }
+
 
 /* Live info */
 .live-info {
@@ -285,7 +286,6 @@ border-top: 1px solid var(--border-muted);
 
 /* Hunt button */
 .btn-hunt {
-  margin-top: 32px;
 background: linear-gradient(135deg, rgba(124,92,255,0.95), rgba(0,214,163,0.95));
 color: #071018;
 font-size: 16px;
