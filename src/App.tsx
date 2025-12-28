@@ -402,11 +402,11 @@ Your profit per {investAmount} USDT
       rel="noopener noreferrer"
       className="btn-contact"
     >
-      Unlock Unlimited Access
+      Say Thanks & Unlock Unlimited Access
     </a>
 
     <p className="contact-footer">
-      For full access to real-time scanning, contact us on Telegram:{" "}
+      If GapFinder helped you, I’d be happy to hear it. Questions or ideas? Reach out on Telegram:{" "}
       <a 
         href={TELEGRAM_CONTACT}
         target="_blank"
