@@ -223,12 +223,6 @@ const extraUSDT = finalUSDT - investAmount;
   <p className="subtitle">Find profitable arbitrage opportunities</p>
 )}
 
-{!showResults && (
-  <p className="scan-counter">🔍 Highest gap found this week: +12.4%</p>
-)}
-
-
-
         {error && (
           <div className="error-state">
             <p className="error-message">⚠️ {error}</p>
@@ -238,28 +232,34 @@ const extraUSDT = finalUSDT - investAmount;
           </div>
         )}
 
-        {showData && !error && bybitPrice && kvamDexPrice && !isScanning && !showResults && (
-          <div className="live-info">
-            <div className="info-row">
-              <span>Bybit TRX/USDT:</span>
-              <span className="price">${bybitPrice.toFixed(6)}</span>
-            </div>
-            <div className="info-row">
-              <span>KvamDex Rate:</span>
-              <span className="price">${kvamDexPrice.toFixed(6)}</span>
-            </div>
-            <div className="info-row highlight">
-              <span>Gap:</span>
-              <span className="gap">+{gapPct.toFixed(2)}%</span>
-            </div>
-          </div>
-        )}
 
-        {!isScanning && !showResults && (
-          <button className="btn-hunt" onClick={startScan}>
-            Hunt Profit
-          </button>
-        )}
+{!isScanning && !showResults && (
+  <button className="btn-hunt" onClick={startScan}>
+    Hunt Profit
+  </button>
+)}
+
+{!showResults && (
+  <p className="scan-counter">🔍 Highest gap found this week: +12.4%</p>
+)}
+
+{showData && !error && bybitPrice && kvamDexPrice && !isScanning && !showResults && (
+  <div className="live-info">
+    <div className="info-row">
+      <span>Bybit TRX/USDT:</span>
+      <span className="price">${bybitPrice.toFixed(6)}</span>
+    </div>
+    <div className="info-row">
+      <span>KvamDex Rate:</span>
+      <span className="price">${kvamDexPrice.toFixed(6)}</span>
+    </div>
+    <div className="info-row highlight">
+      <span>Gap:</span>
+      <span className="gap">+{gapPct.toFixed(2)}%</span>
+    </div>
+  </div>
+)}
+
 
         {isScanning && (
           <div className="scan-area">
