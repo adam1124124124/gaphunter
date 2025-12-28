@@ -219,12 +219,14 @@ const extraUSDT = finalUSDT - investAmount;
         )}
 
         <h1 className="title">GapFinder</h1>
-        {!showResults && (
-          <>
-            <p className="subtitle">Find profitable arbitrage opportunities</p>
-            <p className="scan-counter">🔍 Highest gap found this week: +12.4%</p>
-          </>
-        )}
+{!showResults && (
+  <p className="subtitle">Find profitable arbitrage opportunities</p>
+)}
+
+{!showResults && (
+  <p className="scan-counter">🔍 Highest gap found this week: +12.4%</p>
+)}
+
 
 
         {error && (
