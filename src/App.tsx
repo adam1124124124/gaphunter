@@ -370,7 +370,7 @@ Your profit per {investAmount} USDT
 
 
       <div className="action-steps">
-        <p><strong>🎯 How to Execute:</strong></p>
+        <p><strong>🎯 Quick Start:</strong></p>
 <ol>
   <li>
     Register on{" "}
