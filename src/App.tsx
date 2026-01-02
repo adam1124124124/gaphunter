@@ -365,16 +365,18 @@ Your profit per {investAmount} USDT
       </div>
     </div>
 
-
-
-    <a 
-      href={TELEGRAM_CONTACT}
-      target="_blank"
-      rel="noopener noreferrer"
+    <button 
       className="btn-contact"
+      onClick={() => {
+        setShowResults(false);
+        setShowData(false);
+        setScanProgress(0);
+        setTimeout(() => startScan(), 100);
+      }}
     >
-      Say Thanks & Unlock Unlimited Access
-    </a>
+      Scan Again
+    </button>
+
 
     <p className="contact-footer">
       If GapHunter helped you, I’d be happy to hear it. Questions or ideas? Reach out on Telegram:{" "}
