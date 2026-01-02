@@ -449,7 +449,7 @@ Your profit per {investAmount} USDT
         rel="noopener noreferrer"
         className="telegram-link"
       >
-        @pisapopakaka
+        @softcorehard
       </a>
     </p>
   </div>
