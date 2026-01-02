@@ -345,9 +345,9 @@ Your profit per {investAmount} USDT
 
       <div className="action-steps">
         <p><strong>🎯 Quick Start:</strong></p>
-<ol>
+<ul>
   <li>
-    Register on{" "}
+    1️⃣ Register on{" "}
     <a href={BYBIT_URL} target="_blank" rel="noopener noreferrer" className="inline-link">
       Bybit
     </a>
@@ -356,11 +356,11 @@ Your profit per {investAmount} USDT
       KvamDex
     </a>
   </li>
-  <li>Buy TRX on Bybit with USDT</li>
-  <li>Transfer TRX to KvamDex (TRC-20 network)</li>
-  <li>Sell TRX for USDT on KvamDex</li>
-  <li>Withdraw profit back</li>
-</ol>
+  <li>2️⃣ Buy TRX on Bybit with USDT</li>
+  <li>3️⃣ Transfer TRX to KvamDex (TRC-20 network)</li>
+  <li>4️⃣ Sell TRX for USDT on KvamDex</li>
+  <li>5️⃣ Withdraw profit back</li>
+</ul>
 
       </div>
     </div>
