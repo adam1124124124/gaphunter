@@ -357,7 +357,7 @@ Your profit per {investAmount} USDT
     </a>
   </li>
   <li>2️⃣ Buy TRX on Bybit with USDT</li>
-  <li>3️⃣ Transfer TRX to KvamDex (TRC-20 network)</li>
+  <li>3️⃣ Transfer TRX to KvamDex</li>
   <li>4️⃣ Sell TRX for USDT on KvamDex</li>
   <li>5️⃣ Withdraw profit back</li>
 </ul>
